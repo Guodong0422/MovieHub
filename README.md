@@ -1,5 +1,5 @@
 # MovieHub: Movie Content Management and Discovery Platform
-[English](README.md) | [中文版本](README_CN.md)
+[English README](README.md) | [产品需求文档](docs/PRD_CN.md) | [英文 PRD](docs/PRD.md) | [许可证](LICENSE) | [中文许可证说明](LICENSE_CN.md)
 
 MovieHub is a Flask-based movie content management and discovery platform.
 
