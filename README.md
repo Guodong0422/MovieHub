@@ -1,4 +1,5 @@
 # MovieHub: Movie Content Management and Discovery Platform
+[English](README.md) | [中文版本](README_CN.md)
 
 MovieHub is a Flask-based movie content management and discovery platform.
 
@@ -127,7 +128,7 @@ moviehub/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Guodong0422/MovieHub.git
 cd moviehub
 ```
 
