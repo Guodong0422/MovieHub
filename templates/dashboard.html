@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">Dashboard</h1>
+
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="dashboard-card">
+            <h6>Total Movies</h6>
+            <h2>{{ total_movies }}</h2>
+            <p>Movies in database</p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="dashboard-card">
+            <h6>Average Rating</h6>
+            <h2>{{ average_rating }}</h2>
+            <p>Average user rating</p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="dashboard-card">
+            <h6>Top Rated Movie</h6>
+            {% if top_movie %}
+            <h2 class="small-title">{{ top_movie.title }}</h2>
+            <p>Rating: {{ top_movie.rating }}</p>
+            {% else %}
+            <h2>N/A</h2>
+            <p>No data available</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="dashboard-card">
+            <h6>Most Common Genre</h6>
+            <h2>{{ most_common_genre }}</h2>
+            <p>Most frequent category</p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="dashboard-section">
+            <h4>Genre Distribution</h4>
+
+            {% if genre_counts %}
+            <table class="table table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th>Genre</th>
+                        <th>Movie Count</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for genre, count in genre_counts %}
+                    <tr>
+                        <td>{{ genre }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No genre data available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="dashboard-section">
+            <h4>Product Insight</h4>
+
+            <p>
+                This dashboard helps content managers understand the structure
+                of the movie database, including content volume, rating quality
+                and genre distribution.
+            </p>
+
+            <p>
+                These metrics can support decisions such as which genres need
+                more content, which movies should be highlighted, and how users
+                may browse the catalogue more efficiently.
+            </p>
+
+            <a href="/" class="btn btn-dark">Back to Movies</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

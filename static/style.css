@@ -1,0 +1,81 @@
+body {
+    background-color: #f5f6fa;
+}
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.movie-poster {
+    height: 360px;
+    object-fit: cover;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.detail-poster {
+    max-height: 520px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn {
+    margin-right: 6px;
+    
+}.detail-poster {
+    max-height: 520px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn {
+    margin-right: 6px;
+}
+
+.search-box {
+    background-color: #ffffff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-card {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+    height: 100%;
+}
+
+.dashboard-card h6 {
+    color: #6c757d;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.dashboard-card h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.dashboard-card p {
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.small-title {
+    font-size: 22px !important;
+}
+
+.dashboard-section {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+    height: 100%;
+}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">My Watchlist</h1>
+
+{% if watchlist_items %}
+<div class="row">
+    {% for item in watchlist_items %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+
+            {% if item.movie.poster_url %}
+            <img src="{{ item.movie.poster_url }}" class="card-img-top movie-poster" alt="{{ item.movie.title }}">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ item.movie.title }}</h5>
+
+                <p class="card-text">
+                    <strong>Director:</strong> {{ item.movie.director }}<br>
+                    <strong>Year:</strong> {{ item.movie.year }}<br>
+                    <strong>Genre:</strong> {{ item.movie.genre }}<br>
+                    <strong>Rating:</strong> {{ item.movie.rating }}
+                </p>
+
+                <p>{{ item.movie.description }}</p>
+
+                <a href="/movie/{{ item.movie.id }}" class="btn btn-dark btn-sm">View Details</a>
+
+                <form action="/watchlist/remove/{{ item.movie.id }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="alert alert-info">
+    Your watchlist is empty. Go back to the movie list and add some movies.
+</div>
+
+<a href="/" class="btn btn-dark">Browse Movies</a>
+{% endif %}
+
+{% endblock %}

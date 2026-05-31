@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        {% if movie.poster_url %}
+        <img src="{{ movie.poster_url }}" class="img-fluid rounded detail-poster" alt="{{ movie.title }}">
+        {% endif %}
+    </div>
+
+    <div class="col-md-8">
+        <h1>{{ movie.title }}</h1>
+
+        <p><strong>Director:</strong> {{ movie.director }}</p>
+        <p><strong>Year:</strong> {{ movie.year }}</p>
+        <p><strong>Genre:</strong> {{ movie.genre }}</p>
+        <p><strong>Rating:</strong> {{ movie.rating }}</p>
+
+        <h4>Description</h4>
+        <p>{{ movie.description }}</p>
+
+        <a href="/edit/{{ movie.id }}" class="btn btn-primary">Edit</a>
+
+        <form action="/watchlist/add/{{ movie.id }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-success">Add to Watchlist</button>
+        </form>
+
+        <form action="/delete/{{ movie.id }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+
+        <a href="/" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<h3>You may also like</h3>
+
+{% if similar_movies %}
+<div class="row mt-3">
+    {% for similar in similar_movies %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+
+            {% if similar.poster_url %}
+            <img src="{{ similar.poster_url }}" class="card-img-top movie-poster" alt="{{ similar.title }}">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ similar.title }}</h5>
+
+                <p class="card-text">
+                    <strong>Year:</strong> {{ similar.year }}<br>
+                    <strong>Genre:</strong> {{ similar.genre }}<br>
+                    <strong>Rating:</strong> {{ similar.rating }}
+                </p>
+
+                <a href="/movie/{{ similar.id }}" class="btn btn-dark btn-sm">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info mt-3">
+    No similar movies found yet.
+</div>
+{% endif %}
+
+{% endblock %}

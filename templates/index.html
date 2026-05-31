@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="mb-4">Movie Database</h1>
+
+<form method="GET" action="/" class="row g-3 mb-4 search-box">
+    <div class="col-md-5">
+        <input 
+            type="text" 
+            name="search" 
+            class="form-control" 
+            placeholder="Search by movie title..." 
+            value="{{ search }}"
+        >
+    </div>
+
+    <div class="col-md-3">
+        <select name="genre" class="form-control">
+            <option value="">All Genres</option>
+
+            {% for g in genres %}
+            <option value="{{ g }}" {% if genre == g %}selected{% endif %}>
+                {{ g }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <select name="sort" class="form-control">
+            <option value="rating_desc" {% if sort == "rating_desc" %}selected{% endif %}>
+                Highest Rating
+            </option>
+
+            <option value="rating_asc" {% if sort == "rating_asc" %}selected{% endif %}>
+                Lowest Rating
+            </option>
+
+            <option value="year_desc" {% if sort == "year_desc" %}selected{% endif %}>
+                Newest
+            </option>
+
+            <option value="year_asc" {% if sort == "year_asc" %}selected{% endif %}>
+                Oldest
+            </option>
+        </select>
+    </div>
+
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary w-100">Go</button>
+    </div>
+</form>
+
+{% if search or genre %}
+<div class="mb-3">
+    <span class="text-muted">
+        Current filter:
+        {% if search %}
+        keyword "{{ search }}"
+        {% endif %}
+
+        {% if genre %}
+        genre "{{ genre }}"
+        {% endif %}
+    </span>
+
+    <a href="/" class="btn btn-sm btn-outline-secondary ms-2">Clear</a>
+</div>
+{% endif %}
+
+{% if movies %}
+<div class="row">
+    {% for movie in movies %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+
+            {% if movie.poster_url %}
+            <img src="{{ movie.poster_url }}" class="card-img-top movie-poster" alt="{{ movie.title }}">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ movie.title }}</h5>
+
+                <p class="card-text">
+                    <strong>Director:</strong> {{ movie.director }}<br>
+                    <strong>Year:</strong> {{ movie.year }}<br>
+                    <strong>Genre:</strong> {{ movie.genre }}<br>
+                    <strong>Rating:</strong> {{ movie.rating }}
+                </p>
+
+                <p>{{ movie.description }}</p>
+
+                <a href="/movie/{{ movie.id }}" class="btn btn-dark btn-sm">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="alert alert-info">
+    No movies found. Try changing your search or filter.
+</div>
+{% endif %}
+
+{% endblock %}
